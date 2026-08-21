@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>Vaemir — Redefinir senha</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #2b1b0b,
+                    #0d0905 55%,
+                    #050403
+                );
+
+            color: #ead9b6;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+        }
+
+        .caixa {
+            width: min(560px, 100%);
+            padding: 42px 32px;
+
+            border:
+                1px solid
+                rgba(
+                    197,
+                    150,
+                    66,
+                    0.45
+                );
+
+            border-radius: 14px;
+
+            background:
+                rgba(
+                    8,
+                    6,
+                    4,
+                    0.9
+                );
+
+            box-shadow:
+                0 18px 50px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.45
+                );
+
+            text-align: center;
+        }
+
+        .marca {
+            margin-bottom: 12px;
+
+            color: #b9914e;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 4px;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #f0d18c;
+
+            font-size: clamp(
+                34px,
+                8vw,
+                42px
+            );
+
+            font-weight: normal;
+        }
+
+        .linha {
+            width: 90px;
+            height: 1px;
+
+            margin:
+                26px auto;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    #b88a3e,
+                    transparent
+                );
+        }
+
+        .descricao {
+            margin:
+                0 0 24px;
+
+            color: #b9a783;
+
+            font-size: 16px;
+            line-height: 1.55;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+
+            text-align: left;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+        }
+
+        label span {
+            color: #cdb78c;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            letter-spacing: 1.4px;
+
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            min-height: 46px;
+            padding: 10px 12px;
+
+            border:
+                1px solid
+                rgba(
+                    192,
+                    144,
+                    57,
+                    0.42
+                );
+
+            border-radius: 5px;
+
+            outline: none;
+
+            background:
+                rgba(
+                    2,
+                    2,
+                    2,
+                    0.5
+                );
+
+            color: #ead9b6;
+
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color:
+                rgba(
+                    231,
+                    181,
+                    81,
+                    0.9
+                );
+
+            box-shadow:
+                0 0 0 2px
+                rgba(
+                    216,
+                    162,
+                    67,
+                    0.08
+                );
+        }
+
+        button {
+            min-height: 48px;
+            margin-top: 4px;
+
+            border:
+                1px solid
+                rgba(
+                    226,
+                    175,
+                    77,
+                    0.82
+                );
+
+            border-radius: 5px;
+
+            background:
+                linear-gradient(
+                    #b57c24,
+                    #815313
+                );
+
+            color: #170e05;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 18px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:disabled {
+            opacity: 0.55;
+            cursor: default;
+        }
+
+        .mensagem {
+            display: none;
+
+            margin-top: 18px;
+            padding: 11px 12px;
+
+            border-radius: 5px;
+
+            font-size: 14px;
+            line-height: 1.45;
+
+            text-align: left;
+        }
+
+        .mensagem.erro {
+            display: block;
+
+            border:
+                1px solid
+                rgba(
+                    185,
+                    74,
+                    61,
+                    0.55
+                );
+
+            background:
+                rgba(
+                    82,
+                    17,
+                    13,
+                    0.36
+                );
+
+            color: #e9aaa0;
+        }
+
+        .mensagem.sucesso {
+            display: block;
+
+            border:
+                1px solid
+                rgba(
+                    167,
+                    138,
+                    69,
+                    0.55
+                );
+
+            background:
+                rgba(
+                    70,
+                    56,
+                    16,
+                    0.33
+                );
+
+            color: #e8d399;
+        }
+
+        .oculto {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="caixa">
+
+        <div class="marca">
+            VAEMIR
+        </div>
+
+        <h1>
+            Redefinir senha
+        </h1>
+
+        <div class="linha"></div>
+
+        <p
+            id="descricao"
+            class="descricao"
+        >
+            Escolha uma nova senha para sua conta.
+        </p>
+
+        <form id="formulario">
+
+            <label>
+                <span>
+                    Nova senha
+                </span>
+
+                <input
+                    id="senha"
+                    type="password"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                    placeholder="Digite sua nova senha"
+                />
+            </label>
+
+            <label>
+                <span>
+                    Confirmar nova senha
+                </span>
+
+                <input
+                    id="confirmarSenha"
+                    type="password"
+                    minlength="6"
+                    autocomplete="new-password"
+                    required
+                    placeholder="Repita sua nova senha"
+                />
+            </label>
+
+            <button
+                id="botao"
+                type="submit"
+            >
+                Alterar senha
+            </button>
+
+        </form>
+
+        <div
+            id="mensagem"
+            class="mensagem"
+        ></div>
+
+    </main>
+
+
+    <script type="module">
+
+        import {
+            createClient
+        } from "https://esm.sh/@supabase/supabase-js@2";
+
+
+        const supabaseUrl =
+            "https://bxwpcgutgvjzeftdcdab.supabase.co";
+
+
+        const supabasePublishableKey =
+            "sb_publishable_uA3CR5OvV-RY8M-AghEcgQ__Lu24yvB";
+
+
+        const supabase =
+            createClient(
+                supabaseUrl,
+                supabasePublishableKey
+            );
+
+
+        const formulario =
+            document.getElementById(
+                "formulario"
+            );
+
+
+        const senha =
+            document.getElementById(
+                "senha"
+            );
+
+
+        const confirmarSenha =
+            document.getElementById(
+                "confirmarSenha"
+            );
+
+
+        const botao =
+            document.getElementById(
+                "botao"
+            );
+
+
+        const mensagem =
+            document.getElementById(
+                "mensagem"
+            );
+
+
+        const descricao =
+            document.getElementById(
+                "descricao"
+            );
+
+
+        function mostrarMensagem(
+            texto,
+            tipo
+        ) {
+            mensagem.textContent =
+                texto;
+
+            mensagem.className =
+                `mensagem ${tipo}`;
+        }
+
+
+        async function verificarSessao() {
+
+            const {
+                data,
+                error,
+            } =
+                await supabase.auth
+                    .getSession();
+
+
+            if (
+                error ||
+                !data?.session
+            ) {
+                formulario.classList.add(
+                    "oculto"
+                );
+
+                descricao.textContent =
+                    "Este link de recuperação é inválido ou expirou.";
+
+                mostrarMensagem(
+                    "Solicite um novo link de recuperação pelo aplicativo Vaemir.",
+                    "erro"
+                );
+            }
+        }
+
+
+        formulario.addEventListener(
+            "submit",
+            async (
+                evento
+            ) => {
+
+                evento.preventDefault();
+
+
+                mensagem.className =
+                    "mensagem";
+
+
+                const novaSenha =
+                    senha.value;
+
+
+                const confirmacao =
+                    confirmarSenha.value;
+
+
+                if (
+                    novaSenha.length < 6
+                ) {
+                    mostrarMensagem(
+                        "A senha deve ter pelo menos 6 caracteres.",
+                        "erro"
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    novaSenha !==
+                    confirmacao
+                ) {
+                    mostrarMensagem(
+                        "As senhas não coincidem.",
+                        "erro"
+                    );
+
+                    return;
+                }
+
+
+                botao.disabled =
+                    true;
+
+
+                botao.textContent =
+                    "Alterando...";
+
+
+                const {
+                    error,
+                } =
+                    await supabase.auth
+                        .updateUser({
+                            password:
+                                novaSenha,
+                        });
+
+
+                if (error) {
+
+                    console.error(
+                        "Erro ao alterar senha:",
+                        error
+                    );
+
+
+                    mostrarMensagem(
+                        "Não foi possível alterar sua senha. Solicite um novo link e tente novamente.",
+                        "erro"
+                    );
+
+
+                    botao.disabled =
+                        false;
+
+
+                    botao.textContent =
+                        "Alterar senha";
+
+
+                    return;
+                }
+
+
+                formulario.classList.add(
+                    "oculto"
+                );
+
+
+                descricao.textContent =
+                    "Sua senha foi alterada com sucesso.";
+
+
+                mostrarMensagem(
+                    "Você já pode voltar ao Vaemir e entrar com sua nova senha.",
+                    "sucesso"
+                );
+
+
+                await supabase.auth
+                    .signOut();
+            }
+        );
+
+
+        await verificarSessao();
+
+    </script>
+
+</body>
+</html>
