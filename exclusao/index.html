@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>
+        Exclusão de conta — Vaemir
+    </title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            margin: 0;
+            min-height: 100%;
+        }
+
+        body {
+            min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px 16px;
+
+            background:
+                radial-gradient(
+                    circle at top,
+                    #30200f 0%,
+                    #130e08 34%,
+                    #080706 72%,
+                    #030303 100%
+                );
+
+            color: #e7d8b9;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+        }
+
+        .painel {
+            position: relative;
+
+            width: min(
+                620px,
+                100%
+            );
+
+            padding:
+                36px
+                38px;
+
+            border:
+                1px solid
+                rgba(215, 166, 72, 0.75);
+
+            border-radius: 6px;
+
+            background:
+                linear-gradient(
+                    155deg,
+                    rgba(22, 17, 11, 0.98),
+                    rgba(7, 7, 7, 0.98)
+                );
+
+            box-shadow:
+                0 25px 70px
+                rgba(0, 0, 0, 0.72),
+                inset 0 0 45px
+                rgba(205, 151, 55, 0.04);
+        }
+
+        .painel::before {
+            content: "";
+
+            position: absolute;
+            inset: 7px;
+
+            border:
+                1px solid
+                rgba(205, 154, 61, 0.14);
+
+            pointer-events: none;
+        }
+
+        .marca {
+            margin:
+                0
+                0
+                7px;
+
+            color: #b68a3e;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            letter-spacing: 6px;
+
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+
+            color: #efd394;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 38px;
+            font-weight: 500;
+
+            line-height: 1.1;
+
+            text-align: center;
+        }
+
+        .intro {
+            max-width: 470px;
+
+            margin:
+                14px
+                auto
+                0;
+
+            color: #c4b79e;
+
+            font-size: 15px;
+
+            line-height: 1.55;
+
+            text-align: center;
+        }
+
+        .separador {
+            display: flex;
+            align-items: center;
+
+            gap: 10px;
+
+            width: 75%;
+
+            margin:
+                22px
+                auto;
+        }
+
+        .separador span {
+            flex: 1;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    rgba(202, 153, 61, 0.65)
+                );
+        }
+
+        .separador span:last-child {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(202, 153, 61, 0.65),
+                    transparent
+                );
+        }
+
+        .separador strong {
+            color: #c89a47;
+        }
+
+        h2 {
+            margin:
+                23px
+                0
+                8px;
+
+            color: #dfc17e;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 21px;
+            font-weight: 500;
+        }
+
+        h2:first-child {
+            margin-top: 0;
+        }
+
+        p {
+            margin:
+                0
+                0
+                11px;
+
+            color: #beb29d;
+
+            font-size: 14px;
+
+            line-height: 1.58;
+        }
+
+        .assunto {
+            display: block;
+
+            margin:
+                12px
+                0
+                5px;
+
+            padding:
+                11px
+                14px;
+
+            border-left:
+                2px solid
+                #c9943f;
+
+            background:
+                rgba(185, 130, 42, 0.08);
+
+            color: #e2c481;
+
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .email {
+            color: #efd394;
+            font-weight: 700;
+        }
+
+        .botao {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: fit-content;
+
+            min-height: 44px;
+
+            margin:
+                28px
+                auto
+                0;
+
+            padding:
+                0
+                24px;
+
+            border:
+                1px solid
+                rgba(218, 168, 73, 0.8);
+
+            border-radius: 4px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(91, 57, 18, 0.72),
+                    rgba(32, 22, 11, 0.94)
+                );
+
+            color: #f0d18e;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            font-size: 16px;
+
+            text-decoration: none;
+
+            box-shadow:
+                0 8px 22px
+                rgba(0, 0, 0, 0.4);
+        }
+
+        .rodape {
+            margin:
+                25px
+                0
+                0;
+
+            color: #746b5c;
+
+            font-size: 10px;
+
+            letter-spacing: 1px;
+
+            text-align: center;
+        }
+
+        @media (max-width: 600px) {
+
+            body {
+                align-items: flex-start;
+
+                padding:
+                    16px
+                    10px;
+            }
+
+            .painel {
+                padding:
+                    28px
+                    21px;
+            }
+
+            h1 {
+                font-size: 31px;
+            }
+
+            .intro {
+                font-size: 13px;
+            }
+
+            h2 {
+                font-size: 19px;
+            }
+
+            p {
+                font-size: 13px;
+            }
+
+            .botao {
+                width: 100%;
+
+                padding:
+                    0
+                    14px;
+
+                font-size: 15px;
+            }
+
+            .separador {
+                width: 90%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="painel">
+
+        <p class="marca">
+            VAEMIR
+        </p>
+
+        <h1>
+            Exclusão de conta
+        </h1>
+
+        <p class="intro">
+            Você pode solicitar a exclusão permanente
+            da sua conta Vaemir e dos dados associados
+            a ela.
+        </p>
+
+        <div class="separador">
+            <span></span>
+            <strong>◇</strong>
+            <span></span>
+        </div>
+
+        <section>
+
+            <h2>
+                Como solicitar a exclusão
+            </h2>
+
+            <p>
+                Para solicitar a exclusão da sua conta,
+                envie um e-mail utilizando o mesmo
+                endereço cadastrado na sua conta Vaemir.
+            </p>
+
+            <p>
+                Envie a solicitação para:
+                <span class="email">
+                    fdproducoes2026@gmail.com
+                </span>
+            </p>
+
+            <p>
+                No assunto da mensagem, informe:
+            </p>
+
+            <strong class="assunto">
+                Exclusão de conta Vaemir
+            </strong>
+
+
+            <h2>
+                Dados que serão excluídos
+            </h2>
+
+            <p>
+                Após a confirmação da solicitação,
+                serão removidos os dados associados
+                à conta, incluindo informações de
+                perfil, progresso no jogo, coleção,
+                amizades, mensagens e demais dados
+                vinculados ao jogador.
+            </p>
+
+
+            <h2>
+                Prazo de atendimento
+            </h2>
+
+            <p>
+                Após o recebimento e a confirmação da
+                solicitação, a exclusão será processada
+                dentro do prazo necessário para a
+                remoção segura dos dados associados
+                à conta.
+            </p>
+
+
+            <h2>
+                Importante
+            </h2>
+
+            <p>
+                A exclusão da conta é permanente e não
+                poderá ser desfeita após sua conclusão.
+            </p>
+
+        </section>
+
+
+        <a
+            class="botao"
+            href="mailto:fdproducoes2026@gmail.com?subject=Exclus%C3%A3o%20de%20conta%20Vaemir"
+        >
+            Solicitar exclusão da conta
+        </a>
+
+
+        <p class="rodape">
+            Vaemir · Solicitação de exclusão de conta e dados
+        </p>
+
+    </main>
+
+</body>
+
+</html>
