@@ -2,24 +2,35 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8" />
+
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     />
 
-    <title>Vaemir — E-mail confirmado</title>
+    <meta
+        name="description"
+        content="Vaemir — jogo de coleção, evolução e batalhas de figurinhas."
+    />
+
+    <title>Vaemir — Site oficial</title>
 
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
             margin: 0;
+
             min-height: 100vh;
+
             display: flex;
             align-items: center;
             justify-content: center;
+
             padding: 24px;
 
             background:
@@ -31,18 +42,22 @@
                 );
 
             color: #ead9a5;
+
             font-family:
                 Georgia,
                 "Times New Roman",
                 serif;
         }
 
+
         .caixa {
-            width: min(560px, 100%);
-            padding: 42px 32px;
+            width: min(620px, 100%);
+
+            padding: 48px 36px;
 
             border:
-                1px solid rgba(
+                1px solid
+                rgba(
                     197,
                     150,
                     66,
@@ -71,42 +86,54 @@
             text-align: center;
         }
 
+
         .marca {
             margin-bottom: 12px;
 
             color: #b9914e;
 
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
 
-            letter-spacing: 4px;
+            letter-spacing: 6px;
         }
+
 
         h1 {
             margin: 0;
 
             color: #f0d18c;
 
-            font-size: 42px;
+            font-size:
+                clamp(
+                    38px,
+                    8vw,
+                    52px
+                );
+
             font-weight: normal;
         }
 
-        p {
-            margin:
-                18px 0 0;
 
-            color: #b9a783;
+        .subtitulo {
+            margin:
+                18px auto 0;
+
+            max-width: 470px;
+
+            color: #c7b58f;
 
             font-size: 18px;
             line-height: 1.6;
         }
+
 
         .linha {
             width: 90px;
             height: 1px;
 
             margin:
-                26px auto;
+                28px auto;
 
             background:
                 linear-gradient(
@@ -117,11 +144,118 @@
                 );
         }
 
-        strong {
-            color: #e4c47f;
+
+        .descricao {
+            margin: 0 auto;
+
+            max-width: 500px;
+
+            color: #a99878;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 14px;
+            line-height: 1.7;
         }
+
+
+        .plataforma {
+            margin-top: 24px;
+
+            color: #d7bc7c;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 13px;
+            font-weight: bold;
+
+            letter-spacing: 1px;
+        }
+
+
+        .links {
+            margin-top: 36px;
+
+            padding-top: 22px;
+
+            border-top:
+                1px solid
+                rgba(
+                    184,
+                    138,
+                    62,
+                    0.20
+                );
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+            gap: 10px 18px;
+        }
+
+
+        .links a {
+            color: #b9914e;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 13px;
+
+            text-decoration: none;
+        }
+
+
+        .links a:hover {
+            color: #f0d18c;
+
+            text-decoration: underline;
+        }
+
+
+        footer {
+            margin-top: 24px;
+
+            color: #675d4d;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            font-size: 11px;
+        }
+
+
+        @media (max-width: 520px) {
+
+            .caixa {
+                padding:
+                    38px
+                    22px;
+            }
+
+
+            .subtitulo {
+                font-size: 16px;
+            }
+
+        }
+
     </style>
 </head>
+
 
 <body>
 
@@ -131,21 +265,51 @@
             VAEMIR
         </div>
 
+
         <h1>
-            E-mail confirmado
+            Explore Vaemir
         </h1>
+
 
         <div class="linha"></div>
 
-        <p>
-            Sua conta foi confirmada com sucesso.
+
+        <p class="subtitulo">
+            Colecione figurinhas, evolua sua coleção
+            e enfrente outros jogadores nas arenas
+            do mundo de Vaemir.
         </p>
 
-        <p>
-            Você já pode voltar ao
-            <strong>Vaemir</strong>
-            e entrar normalmente.
+
+        <p class="descricao">
+            Vaemir é um jogo de coleção digital
+            onde jogadores podem completar sua coleção,
+            conquistar recompensas, evoluir suas figurinhas
+            e participar de batalhas.
         </p>
+
+
+        <div class="plataforma">
+            DISPONÍVEL PARA ANDROID
+        </div>
+
+
+        <nav class="links">
+
+            <a href="./privacidade/">
+                Política de Privacidade
+            </a>
+
+            <a href="./exclusao/">
+                Exclusão de Conta
+            </a>
+
+        </nav>
+
+
+        <footer>
+            © 2026 Vaemir. Todos os direitos reservados.
+        </footer>
 
     </main>
 
